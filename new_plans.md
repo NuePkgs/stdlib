@@ -184,3 +184,102 @@ class Matrix:
     def apply_function(self, func):
         return Matrix(self.rows, self.cols, [[func(x) for x in row] for row in self.data])
 ```
+
+## usage
+
+```python
+# Create a 4x4 matrix
+A = Matrix(4, 4, [
+    [1, 2, 3, 4],
+    [5, 6, 7, 8],
+    [9, 10, 11, 12],
+    [13, 14, 15, 16]
+])
+
+# Create another 4x4 matrix
+B = Matrix(4, 4, [
+    [16, 15, 14, 13],
+    [12, 11, 10, 9],
+    [8, 7, 6, 5],
+    [4, 3, 2, 1]
+])
+
+# Addition
+C = A.add(B)
+print("A + B:")
+print(C.to_string())
+
+# Subtraction
+D = A.subtract(B)
+print("\nA - B:")
+print(D.to_string())
+
+# Multiplication
+E = A.multiply(B)
+print("\nA * B:")
+print(E.to_string())
+
+# Transpose
+AT = A.transpose()
+print("\nTranspose of A:")
+print(AT.to_string())
+
+# Determinant
+det_A = A.determinant()
+print(f"\nDeterminant of A: {det_A}")
+
+# Inverse (if possible)
+try:
+    A_inv = A.inverse()
+    print("\nInverse of A:")
+    print(A_inv.to_string())
+except ValueError as e:
+    print(f"\nCould not calculate inverse: {e}")
+
+# Create a larger random matrix (10x10)
+R = Matrix.random(10, 10, 0, 100)
+print("\nRandom 10x10 matrix:")
+print(R.to_string())
+
+# Calculate Frobenius norm
+norm_R = R.frobenius_norm()
+print(f"\nFrobenius norm of R: {norm_R}")
+
+# Check if R is symmetric
+is_sym = R.is_symmetric()
+print(f"\nIs R symmetric? {is_sym}")
+
+# Create identity matrix
+I = Matrix.identity(5)
+print("\n5x5 Identity matrix:")
+print(I.to_string())
+
+# Matrix power
+A_cubed = A.power(3)
+print("\nA^3:")
+print(A_cubed.to_string())
+
+# Reshape matrix
+reshaped = A.reshape(2, 8)
+print("\nA reshaped to 2x8:")
+print(reshaped.to_string())
+
+# Apply function (e.g., square each element)
+squared = A.apply_function(lambda x: x**2)
+print("\nA with each element squared:")
+print(squared.to_string())
+
+# Create a matrix from a list
+list_data = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+F = Matrix.from_list(list_data)
+print("\nMatrix created from list:")
+print(F.to_string())
+
+# Calculate rank
+rank_F = F.rank()
+print(f"\nRank of F: {rank_F}")
+
+# Trace
+trace_F = F.trace()
+print(f"\nTrace of F: {trace_F}")
+```
